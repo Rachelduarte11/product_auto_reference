@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- ────────────────────────────────────────────────
+             Action: open ir.sequence list filtered to show
+             only sequences relevant to product references.
+             (no domain filter → user can see/create any seq)
+        ──────────────────────────────────────────────────── -->
+        <record id="action_product_sequences" model="ir.actions.act_window">
+            <field name="name">Secuencias de Productos</field>
+            <field name="res_model">ir.sequence</field>
+            <field name="view_mode">list,form</field>
+            <field name="domain">[('code', '=like', 'product.auto.ref%')]</field>
+            <field name="context">{'default_code': 'product.auto.ref.'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    No hay secuencias configuradas todavía.
+                </p>
+                <p>
+                    Cree una nueva secuencia y asígnela a una Categoría de Producto
+                    para personalizar la numeración de referencias internas.
+                </p>
+            </field>
+        </record>
+
+        <!-- ────────────────────────────────────────────────
+             Menu item: Inventory > Configuration > Secuencias de Productos
+        ──────────────────────────────────────────────────── -->
+        <menuitem
+            id="menu_product_sequences"
+            name="Secuencias de Productos"
+            parent="stock.menu_stock_config_settings"
+            action="action_product_sequences"
+            sequence="100"/>
+
+    </data>
+</odoo>

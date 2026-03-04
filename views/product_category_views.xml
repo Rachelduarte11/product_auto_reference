@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <!-- Extend the standard product.category form to expose sequence_id -->
+        <record id="product_category_form_view_inherit" model="ir.ui.view">
+            <field name="name">product.category.form.inherit.auto_reference</field>
+            <field name="model">product.category</field>
+            <field name="inherit_id" ref="product.product_category_form_view"/>
+            <field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group string="Configuración de Referencia Automática" col="2">
+                        <field name="sequence_id"
+                               string="Secuencia de Referencia"
+                               options="{'no_create': False, 'no_open': False}"
+                               help="Si se selecciona, los productos de esta categoría usarán esta secuencia para generar su Referencia Interna. Déjelo vacío para usar la secuencia global por defecto."/>
+                    </group>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
