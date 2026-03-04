@@ -15,7 +15,7 @@
           category-specific sequence is defined.
         - All sequences are fully editable from Inventory > Configuration > Product Sequences.
     """,
-    'author': 'Custom Development',
+    'author': 'Rachel Duarte - Alesco Perú',
     'depends': ['product', 'stock'],
     'data': [
         'data/ir_sequence_data.xml',

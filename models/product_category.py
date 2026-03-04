@@ -8,6 +8,7 @@ class ProductCategory(models.Model):
     sequence_id = fields.Many2one(
         comodel_name='ir.sequence',
         string='Reference Sequence',
+        domain="[('code', '=like', 'product.auto.ref%')]",
         ondelete='set null',
         help=(
             "If set, products created in this category will use this sequence "
