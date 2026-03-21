@@ -11,15 +11,24 @@
             <field name="name">Secuencias de Productos</field>
             <field name="res_model">ir.sequence</field>
             <field name="view_mode">list,form</field>
-            <field name="domain">[('code', '=like', 'product.auto.ref%')]</field>
-            <field name="context">{'default_code': 'product.auto.ref.'}</field>
+            <field name="domain">[
+                ('code', '=like', 'product.auto.ref%'),
+                '|',
+                    ('company_id', '=', allowed_company_ids[0]),
+                    ('company_id', '=', False)
+            ]</field>
+            <field name="context">{
+                'default_code': 'product.auto.ref.',
+                'default_company_id': allowed_company_ids[0]
+            }</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    No hay secuencias configuradas todavía.
+                    No hay secuencias configuradas para esta compañía.
                 </p>
                 <p>
-                    Cree una nueva secuencia y asígnela a una Categoría de Producto
-                    para personalizar la numeración de referencias internas.
+                    Cree una secuencia con código <b>product.auto.ref.default</b>
+                    (o el código de una categoría) y asígnela a esta compañía para
+                    tener un contador independiente por empresa.
                 </p>
             </field>
         </record>

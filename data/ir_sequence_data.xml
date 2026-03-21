@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!--
-        noupdate="1" ensures that if the user changes the prefix, padding or
-        number_next from the UI, those changes will NOT be overwritten when
-        the module is upgraded. The record is only created once (on first install).
+        noupdate="1" → los cambios hechos desde la UI (prefijo, padding, etc.)
+        NO se sobreescriben al actualizar el módulo. El registro se crea sólo
+        una vez en la instalación inicial.
+
+        Multi-compañía:
+          - Esta secuencia tiene company_id=False → es COMPARTIDA (fallback global).
+          - Para aislar el contador por empresa, crea desde Inventario >
+            Configuración > Secuencias de Productos una secuencia con el mismo
+            código ("product.auto.ref.default") pero asignada a tu compañía.
+            El módulo priorizará automáticamente la secuencia de la compañía
+            activa sobre esta secuencia compartida.
     -->
     <data noupdate="1">
 
         <record id="seq_product_auto_default" model="ir.sequence">
-            <field name="name">Configuración Global de Referencias</field>
+            <field name="name">Configuración Global de Referencias (Compartida)</field>
             <field name="code">product.auto.ref.default</field>
             <field name="prefix">PROD</field>
             <field name="padding">4</field>
