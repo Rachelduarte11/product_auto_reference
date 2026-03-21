@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 {
     'name': 'Product Auto Reference',
     'version': '18.0.1.0.0',
